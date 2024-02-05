@@ -242,39 +242,51 @@ void ArrayLocal()
 
 }
 
+void task1();
 
-int main()
-{ 
-    
-    
-    
+int main() 
+{
     const int MAX_SIZE = 560;
     std::cout << "Hello World!\n";
     ShowMainMenu();
-    /*
-    double A[MAX_SIZE], B[MAX_SIZE],C[MAX_SIZE];
-    int n,m;
-    n = RndInputArray(MAX_SIZE, A);
-    WriteArrayTextFile(n, A, "1.txt");
-    m = ReadArrayTextFile(MAX_SIZE, B, "1.txt");
-    cout << " \n m= " << m << endl;
-    for (int i = 0; i < m; i++)
-        cout << B[i] << "   ";
-    WriteArrayBinFile(n, A, "1.bin");
-    m = ReadArrayBinFile(MAX_SIZE, C, "1.bin");
-    cout << " \n m= " << m << endl;
-    for (int i = 0; i < m; i++)
-        cout << C[i] << "   ";
-    cout << "\n  Vector \n";
-    vector<double> vA;
-    ConsoleInputVector(MAX_SIZE, vA);
-    for (auto v : vA) {
-        cout << v << "   ";
+    int c;
+    cin>>c;
+    if (c == 1) {
+        task1();
     }
-*/
-    TaskV();
     return 1;
 
+}
+
+void task1() {
+
+    cout << "Enter Lenght for A" << endl;
+    int n;
+    cin >> n;
+    double A[100];
+    double C[100];
+    //ConsoleInputArray(n, A);
+    for (int i = 0;i < n;i++) {
+        cout << "Enter number for A" << endl;
+        int num;
+        cin >> num;
+        A[i] = num;
+    }
+    WriteArrayTextFile(n, A, "Task1TextFile.txt");
+    WriteArrayBinFile(n, A, "Task1BinFile.bin");
+    if (n == 0) {
+        n = RndInputArray(100, A);
+        WriteArrayTextFile(n, A, "RandomTask1TextFile.txt");
+        WriteArrayBinFile(n, A, "RandomTask1BinFile.bin");
+    }
+    for (int i = 0; i < n; i++) {
+        C[i] = pow(2, i) * A[i];
+    }
+    WriteArrayTextFile(n, A, "AnswerTaskTextFile.txt");
+    WriteArrayBinFile(n, C, "AnswerTaskBinFile.bin");
+    for (int i = 0; i < n; i++) {
+        cout << C[i] << endl;
+    }
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
