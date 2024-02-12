@@ -347,10 +347,13 @@ int main() {
     switch (task) {
     case 1:
         Task1();
+        break;
     case 2:
         Task2();
+        break;
     case 3:
         Task3();
+        break;
     }
 
     return 0;
