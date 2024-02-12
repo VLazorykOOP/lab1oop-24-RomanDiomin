@@ -242,55 +242,119 @@ void ArrayLocal()
 
 }
 
-void task1();
+void Task2() {
 
-int main() 
-{
-    const int MAX_SIZE = 560;
-    std::cout << "Hello World!\n";
-    ShowMainMenu();
-    int c;
-    cin>>c;
-    if (c == 1) {
-        task1();
+    int size;
+    int start;
+    int end;
+    int maxElement = INT_MIN;
+    int lastIndex = -1;
+    cout << "Enter length" << endl;
+    cin >> size;
+    cout << "Enter min diapason : " << endl;
+    cin >> start;
+    cout << "Enter max diapason : " << endl;
+    cin >> end;
+    int A[200];
+    for (int i = 0; i < size; ++i) {
+        cout << "Enter element : " << endl;
+        cin >> A[i];
     }
-    return 1;
+
+
+    for (int i = 0; i < size; i++) {
+        if (A[i] >= start && A[i] <= end) {
+            if (A[i] % 2 == 0) {
+                break;
+            }
+            if (A[i] >= maxElement) {
+                maxElement = A[i];
+                lastIndex = i;
+            }
+        }
+    }
+
+    cout << "Massive : " << endl;
+    for (int i = 0; i < size; i++) {
+        cout << A[i] << " ";
+    }
+    if (lastIndex != -1) {
+        cout << "Last max index is : " << lastIndex << endl;
+    }
+    else {
+        cout << "Last index is not found." << endl;
+    }
+
 
 }
 
-void task1() {
+
+void Task3() {
+    const int maxSize = 200;
+    double A[maxSize];
+    double B[maxSize];
+    int n;
+
+    cout << "Enter length (n <= 200): ";
+    cin >> n;
+
+
+    cout << "Enter elements A:\n";
+    for (int i = 0; i < n; ++i) {
+        cout << "A[" << i << "]: ";
+        cin >> A[i];
+    }
+
+
+    for (int i = 0; i < n; ++i) {
+        double sum = 0.0;
+        for (int j = 0; j < n; ++j) {
+            if (j != i) {
+                sum += A[j];
+            }
+        }
+        B[i] = sum / (n - 1);
+    }
+
+    // Виведення масиву В
+    cout << "Massive B:\n";
+    for (int i = 0; i < n; ++i) {
+        cout << "B[" << i << "]: " << B[i] << endl;
+    }
+}
+
+void Task1() {
 
     cout << "Enter Lenght for A" << endl;
     int n;
     cin >> n;
-    double A[100];
-    double C[100];
-    //ConsoleInputArray(n, A);
-    for (int i = 0;i < n;i++) {
-        cout << "Enter number for A" << endl;
-        int num;
-        cin >> num;
-        A[i] = num;
-    }
-    WriteArrayTextFile(n, A, "Task1TextFile.txt");
-    WriteArrayBinFile(n, A, "Task1BinFile.bin");
-    if (n == 0) {
-        n = RndInputArray(100, A);
-        WriteArrayTextFile(n, A, "RandomTask1TextFile.txt");
-        WriteArrayBinFile(n, A, "RandomTask1BinFile.bin");
-    }
+    int A[200];
+    int C[200];
+
     for (int i = 0; i < n; i++) {
         C[i] = pow(2, i) * A[i];
     }
-    WriteArrayTextFile(n, A, "AnswerTaskTextFile.txt");
-    WriteArrayBinFile(n, C, "AnswerTaskBinFile.bin");
+
     for (int i = 0; i < n; i++) {
         cout << C[i] << endl;
     }
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+int main() {
+    int task;
+    cout << "Enter task" << endl;
+    cin >> task;
+    switch (task) {
+    case 1:
+        Task1();
+    case 2:
+        Task2();
+    case 3:
+        Task3();
+    }
+
+    return 0;
+}
 
 // Советы по началу работы 
 //   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
